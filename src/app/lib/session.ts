@@ -45,6 +45,8 @@ export async function createSession(userId: string, role: string) {
 
 export async function deleteSession() {
     const cookieStore = await cookies()
+    const cookieValue = await decrypt(cookieStore.getAll()[0].value);
+    console.log("Logout information: " + cookieValue);
     cookieStore.delete('session');
     redirect('/nlogin');
 }

@@ -43,7 +43,7 @@ export async function getTypesAndDates() {
 }
 
 export async function addUser(name, role, email, hashedPassword) {
-    const data = await pool.query('insert into users("name", "email", "password","role") values ($1,$2,$3,$4) RETURNING id ', [name, email, hashedPassword, role]);
+    const data = await pool.query('insert into users("name", "email", "password","role") values ($1,$2,$3,$4) RETURNING id, role ', [name, email, hashedPassword, role]);
     return data.rows;
 }
 

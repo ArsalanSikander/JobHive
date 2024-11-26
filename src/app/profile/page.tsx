@@ -6,14 +6,14 @@ import ProfilePage from "./profileComponent";
 async function page() {
     const session = await verifySession();
     if (session) {
-        if (session.role !== 'Jobseeker') {
+        if (session.role !== 'Jobseeker' && session.role !== 'Company/Recruiter') {
             // User is authenticated but does not have the right permissions
             redirect('/error');
         }
     }
     return(
         <>
-            <ProfilePage/>
+            <ProfilePage role={session.role}/>
         </>
     )
 }

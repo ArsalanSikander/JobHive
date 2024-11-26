@@ -32,12 +32,13 @@ export async function signup(state: FormState, formData: FormData) {
     const data = await addUser(name, role, email, hashedPassword);
 
     const user = data[0];
+    console.log("This is the user who just got registered: " + user.id + " | " + user.role);
 
     // session management
 
-    await createSession(user.id, user.role)
+    createSession(user.id, user.role);
     // 5. Redirect user
-    redirect('/profile')
+    redirect('/profile');
 
 }
 
