@@ -1,0 +1,84 @@
+#main{
+    background-color: rgba(255, 166, 0, 0.431);
+    margin:0;
+    padding:0;
+    display: flex;
+    flex-direction: row;
+}
+
+#pageHolder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.graphCont{
+    margin: 5vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#cont{
+    background-color: rgb(167, 0, 56);
+    height: 44vh;
+    width: 40vw;
+    overflow-x: scroll;
+}
+
+#cont::-webkit-scrollbar{
+    display: none;
+}
+
+#innerOne{
+    position: relative;
+    height: 36vh;
+    margin: 4vh 0vh;
+    margin-left: 1.5vw;/* 2 + 1 extra*/
+    width:90%;
+    background-color: rgb(222, 235, 239);
+    display: flex;
+    align-items: end;
+}
+
+.dateJobItem{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    transform: translate(-50%, 3vh);
+}
+
+
+#someHeight{
+    /* position: absolute; */
+    background-color: rgb(157, 209, 233);
+    border-top-left-radius: .6vh;
+    border-top-right-radius: .6vh;
+    z-index: 0;
+}
+
+
+#someHeight:hover #toShow{
+    display: block;
+}
+
+#rangeControl{
+    width: 50%;
+}
+
+#dayLabel{
+    height:3vh;
+    aspect-ratio: 1;
+    margin:0;
+    overflow:visible;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#yAxis{
+    transform: translate(-100%, 0.6vw); /*put 0.6vw vertically as text size is 1.2vw and needs to be half-text down*/
+    position:'relative';
+    bottom:0;
+    left:0;
+}
