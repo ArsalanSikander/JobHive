@@ -1,17 +1,20 @@
 "use server"
 const pg = require('pg');
-const { Pool } = pg;
+const { Pool, Client } = pg;
 
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: process.env.DB_ENV
+    port: process.env.DB_ENV,
+    ssl:{
+        rejectUnauthorized: false,
+    }
 });
 
 export async function getAllRows() {
-    let result = await pool.query('Select oldScrapedJobs.id, oldScrapedJobs."jobName", oldScrapedJobs.link from oldScrapedJobs').catch(err => {
+    let result = await pool.query('Select "oldScrapedJobs".id, "oldScrapedJobs"."jobName", "oldScrapedJobs".link from "oldScrapedJobs"').catch(err => {
         return err;
     })
     return result.rows;
@@ -31,7 +34,7 @@ export async function getTypesAndDates() {
     // group by "ds"
     // order by "ds";
 
-    let result = await pool.query(`select row_number() over() as "id", count("jobName") as "jobs", to_char(to_timestamp("dateUnix"/1000), 'YYYYMMDD') as "dateStr" from oldScrapedJobs group by "dateStr" order by "dateStr";`).catch(err => {
+    let result = await pool.query(`select row_number() over() as "id", count("jobName") as "jobs", to_char(to_timestamp("dateUnix"/1000), 'YYYYMMDD') as "dateStr" from "oldScrapedJobs" group by "dateStr" order by "dateStr";`).catch(err => {
         console.error("Error in getTypesAndDates() : ")
         return err;
     })
